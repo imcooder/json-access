@@ -53,7 +53,13 @@ console.log('level4/sub/[0]/name:', jsonSelect.getEx(a, 'level4/sub/[0]/name'));
 console.log('level5/objs/[0]:', jsonSelect.getEx(a, 'level5/objs/[0]'));
 console.log('level5/objs/[0]/name:', jsonSelect.getEx(a, 'level5/objs/[0]/name'));
 ```
-路径说明：
+function desc
+|name|desc|
+|-|
+|get| throw error when path not exist or bad format|
+|getEx|return undefined when error|
+
+path desc：
 path item split by '/'
 exp:
 level3/[2] 
