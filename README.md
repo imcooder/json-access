@@ -55,7 +55,7 @@ console.log('level5/objs/[0]/name:', jsonSelect.getEx(a, 'level5/objs/[0]/name')
 
 console.log('delete level1:', jsonSelect.deleteEx(a, 'level1'));
 console.log('delete level3/[2]:', jsonSelect.deleteEx(a, 'level3/[2]'));
-console.log('delete level5/objs/[0]/name:', jsonSelect.getEx(a, 'level5/objs/[0]/name'));
+console.log('delete level5/objs/[0]/name:', jsonSelect.deleteEx(a, 'level5/objs/[0]/name'));
 ```
 ### function desc:
 |name|desc|
