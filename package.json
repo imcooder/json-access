@@ -1,6 +1,6 @@
 {
     "name": "json-access",
-    "version": "1.0.1",
+    "version": "1.0.3",
     "private": false,
     "description": "json数据快速访问",
     "main": "index.js",
