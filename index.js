@@ -29,7 +29,7 @@ function get(input, path) {
                 throw new Error('not array');
             }
             let idx = matches[1];
-            if (idx >= obj.length) {
+            if (idx >= obj.length || idx < 0) {
                 throw new Error('not exist');
             }
             obj = obj[idx];
@@ -39,6 +39,54 @@ function get(input, path) {
             }
             if (!_.has(obj, name)) {
                 throw new Error('not exist');
+            }
+            obj = obj[name];
+        }
+    }
+    return obj;
+};
+/**
+ * 
+ * @param {*} input 
+ * @param {*} array 
+ */
+function del(input, path) {
+    if (!input) {
+        return;
+    }
+    if (!Array.isArray(path)) {
+        return;
+    }
+    if (path.length === 0) {
+        return;
+    }
+    let obj = input;
+    while (path.length) {
+        let name = path.shift();
+        let matches = /^\[(\d+)\]$/gi.exec(name);
+        if (matches) {
+            if (!Array.isArray(obj)) {
+                throw new Error('not array');
+            }
+            let idx = matches[1];
+            if (idx >= obj.length || idx < 0) {
+                return;
+            }
+            if (path.length === 0) {
+                obj.splice(idx, 1);
+                return;
+            }
+            obj = obj[idx];
+        } else {
+            if (!_.isObject(obj)) {
+                throw new Error('not map');
+            }
+            if (!_.has(obj, name)) {
+                return;
+            }
+            if (path.length === 0) {
+                delete obj[name];
+                return;
             }
             obj = obj[name];
         }
@@ -70,9 +118,36 @@ module.exports = {
         try {
             ret = get(input, path);
         } catch (error) {
+            console.error('get error:%s', error.stack);
             ret = undefined;
         }
         return ret;
+    },
+    delete: function(input, path) {
+        if (!path) {
+            return input;
+        }
+        if (!_.isString(path)) {
+            return input;
+        }
+        path = path.split('/');
+        del(input, path);
+        return input;
+    },
+    deleteEx: function(input, path) {
+        if (!path) {
+            return input;
+        }
+        if (!_.isString(path)) {
+            return input;
+        }
+        path = path.split('/');
+        try {
+            del(input, path);
+        } catch (error) {
+            console.error('delete error:%s', error.stack);
+        }
+        return input;
     },
     setEx: function(input, path, value) {
 

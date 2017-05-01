@@ -52,12 +52,18 @@ console.log('level4/[0]/name:', jsonSelect.getEx(a, 'level4/[0]/name'));
 console.log('level4/sub/[0]/name:', jsonSelect.getEx(a, 'level4/sub/[0]/name'));
 console.log('level5/objs/[0]:', jsonSelect.getEx(a, 'level5/objs/[0]'));
 console.log('level5/objs/[0]/name:', jsonSelect.getEx(a, 'level5/objs/[0]/name'));
+
+console.log('delete level1:', jsonSelect.deleteEx(a, 'level1'));
+console.log('delete level3/[2]:', jsonSelect.deleteEx(a, 'level3/[2]'));
+console.log('delete level5/objs/[0]/name:', jsonSelect.getEx(a, 'level5/objs/[0]/name'));
 ```
-### function desc:\n
+### function desc:
 |name|desc|
 |-|
 |get| throw error when path not exist or bad format|
 |getEx|return undefined when error|
+|delete| return this, throw error when bad format|
+|deleteEx| return this|
 
 ### path desc：
 path item split by '/'
