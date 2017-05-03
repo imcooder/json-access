@@ -3,7 +3,7 @@
  * @author imcooder@gmail.com
  */
 /* eslint-disable fecs-camelcase */
-/* eslint-disable */
+/*jshint esversion: 6 */
 var _ = require('underscore');
 /**
  * 
@@ -44,7 +44,7 @@ function get(input, path) {
         }
     }
     return obj;
-};
+}
 /**
  * 
  * @param {*} input 
@@ -92,7 +92,7 @@ function del(input, path) {
         }
     }
     return obj;
-};
+}
 
 module.exports = {
     get: function(input, path) {
@@ -106,20 +106,20 @@ module.exports = {
         let ret = get(input, path);
         return ret;
     },
-    getEx: function(input, path) {
+    getEx: function(input, path, def) {
         if (!path) {
-            return null;
+            return def;
         }
         if (!_.isString(path)) {
-            return null;
+            return def;
         }
         path = path.split('/');
-        let ret = undefined;
+        let ret = def;
         try {
             ret = get(input, path);
         } catch (error) {
             console.error('get error:%s', error.stack);
-            ret = undefined;
+            ret = def;
         }
         return ret;
     },

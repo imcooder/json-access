@@ -61,7 +61,7 @@ console.log('delete level5/objs/[0]/name:', jsonSelect.deleteEx(a, 'level5/objs/
 |name|desc|
 |-|
 |get| throw error when path not exist or bad format|
-|getEx|return undefined when error|
+|getEx(input, path, def)|return def when error|
 |delete| return this, throw error when bad format|
 |deleteEx| return this|
 
