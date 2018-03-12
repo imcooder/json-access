@@ -118,7 +118,6 @@ module.exports = {
         try {
             ret = get(input, path);
         } catch (error) {
-            console.error('get error:%s', error.stack);
             ret = def;
         }
         return ret;
@@ -145,7 +144,6 @@ module.exports = {
         try {
             del(input, path);
         } catch (error) {
-            console.error('delete error:%s', error.stack);
         }
         return input;
     },
